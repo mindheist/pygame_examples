@@ -24,8 +24,8 @@ clock = pygame.time.Clock()
 rect_x = 50
 rect_y = 50
 
-rect_x_change = 1
-rect_y_change = 1
+rect_x_change = 5
+rect_y_change = 5
 
 while not done :
 	for event in pygame.event.get():
