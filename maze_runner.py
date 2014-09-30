@@ -2,8 +2,10 @@
 # 1. Need pygame library ( import pygame)
 # 2. Need some Basic colors for the Game ( Define RGB colors)
 # 3. Need a basic Clock ( pygame.time.clock)
-# 3. Need a Wall Class ( Use Wall Objects later on the game)
-# 4. Need a Player Class ( this would be small 15 X 15 WHITE BOX )
+# 4. Need a Wall Class ( Use Wall Objects later on the game)
+#    The Wall is a sprite and will be a subclass of the Sprite SuperClass
+#    The Wall will not have any methods ,since they are static objects on the screen 
+# 5. Need a Player Class ( this would be small 15 X 15 WHITE BOX )
 # 5. Need a Room Class ( to go from Room to Room , changin Maze)
 # 6. Need the main loop that doesnt quit till you do a pygame.event = pygame.QUIT
 # 6. Need a Clock that ticks 60 times
@@ -13,6 +15,7 @@
 import pygame
 
 #=========== Step 2 as above ===============#
+#== This is based on RGB color palette =====#
 BLACK  = (  0 ,   0,   0)
 WHITE  = (255 , 255, 255)
 RED    = (255 ,   0,   0)
@@ -22,39 +25,51 @@ PURPLE = (255 ,   0, 255)
 
 #=========== Step 3 as above ===============#
 
+clock = pygame.time.Clock()
+#=== This clock has to tick 60 times per min=#
+#============================================#
+
+#=========== Step 4 as above ===============#
+
 class Wall(pygame.sprite.Sprite):
-	#======Step 3.1 Sub Class pygames's inbuilt Sprite Class ===3
+#======Step 3.1 Sub Class pygames's inbuilt Sprite Class ==#
 	def __init__(self, x, y, width, height, color):
 		pygame.sprite.Sprite.__init__(self)
-
+#====== Draw a Surface & make that an image ===============#
 		self.image = pygame.Surface([width,height])
 		self.image.fill(color)
-
+#===== The get_rect() function on the image treats the entire
+#===== image as one rectangle and gets the x,y of the image 
 		self.rect = self.image.get_rect()
 		self.rect.x = x
 		self.rect.y = y 
 
+#=========== Step 5 as above ===============#
+
 class Player(pygame.sprite.Sprite):
+
+# ==== Once again,the Player Class is also a subclass of Sprite Super Class ==#
 
 #VARIABLES FOR THE PLAYER CLASS 
 
 	change_x = 0
 	change_y = 0
 
-#==== Unlike the Wall Class above , Player Class is not static , Player would move in the surface ====#
-#==== Player should be able to move , by detecting Walls ===#
+#==== Unlike the Wall Class above,Player object would not be immobile ==# 
+#==== Player object would move & should be able to detect walls  ====#
+
 	def __init__(self, x, y):
+# === Define a constructor ================#
 		pygame.sprite.Sprite.__init__(self)
-		
+#==== Call the Super Class's constructpr ==#
 		self.image = pygame.Surface([15,15])
 		self.image.fill(WHITE)
-		
+# == Draw the Player , get the x,y co-ordinates of the player ==#
 		self.rect = self.image.get_rect()
 		self.rect.x = x
 		self.rect.y = y 
-		
 
-	#=== Player Change Speed method ====#
+#===== Player Change Speed method ====#
 
 	def ChangeSpeed(self, x, y):
 		self.change_x += x
@@ -181,8 +196,6 @@ def main():
 
 	current_room_no = 0
 	current_room = rooms[current_room_no]
-
-	clock = pygame.time.Clock()
 
 	done = False
 
