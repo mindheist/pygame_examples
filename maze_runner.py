@@ -100,20 +100,25 @@ class Player(pygame.sprite.Sprite):
 			else:
 				self.rect.top = block.rect.bottom
 
+#===== Why do we pass Object into this class ? =====#
 class Room(object):
 	# Base Class for all Rooms
 	# Each Room has a bunch of Walls
+	# Each Room can also have enemy sprites or collectable sprites
+	# which we do not use in this program
 
 	wall_list = None
-	enemy_sprites = None
+	#enemy_sprites = None
 
 	def __init__(self):
+#=== What is sprite.Group() =====================#
 		self.wall_list = pygame.sprite.Group()
-		self.enemy_sprites = pygame.sprite.Group()
+		#self.enemy_sprites = pygame.sprite.Group()
 
 class Room1(Room):
 	def __init__(self):
 		Room.__init__(self)
+#=== The following is a array of individual walls ====#
 		walls = [[0, 0, 20, 250, WHITE],
                  [0, 350, 20, 250, WHITE],
                  [780, 0, 20, 250, WHITE],
@@ -124,6 +129,7 @@ class Room1(Room):
                 ]
 
 		for item in walls:
+#=== Instantiate wall by wall and add it to the wall list =====#
 			wall = Wall(item[0],item[1],item[2],item[3],item[4])
 			self.wall_list.add(wall)
 
@@ -215,6 +221,8 @@ def main():
 				if event.key ==pygame.K_DOWN:
 					player.ChangeSpeed(0,5)
 
+# === Understand this Key-up & Why it is contradictory to KeyDown above==#
+			
 			if event.type == pygame.KEYUP:
 				if event.key == pygame.K_LEFT:
 					player.ChangeSpeed(5,0)
