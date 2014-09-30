@@ -235,6 +235,7 @@ def main():
 		
 		player.move(current_room.wall_list)
 		
+# == This part explains navigation between rooms and the wrapping structure ==#
  		if player.rect.x < -15:
 			if current_room_no == 0:
 				current_room_no = 1
