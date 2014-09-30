@@ -152,7 +152,6 @@ class Room2(Room):
 			self.wall_list.add(wall)
 
 class Room3(Room):
-    """This creates all the walls in room 3"""
     def __init__(self):
         Room.__init__(self)
  
@@ -180,14 +179,21 @@ class Room3(Room):
 def main():
 
 	pygame.init()
+# Diplay Vs Screen Vs Image . Write a good few lines about the differences 
+# between these
 
 	screen = pygame.display.set_mode([800,600])
 
 	pygame.display.set_caption('Maze Runner')
 
+# Create a player and add it to the moving sprites list ; 
+# In this particular program ; the player is the only moving component
+
 	player = Player(50,50)
 	movingsprites = pygame.sprite.Group()
 	movingsprites.add(player)
+
+# Create an Empty Room List
 
 	rooms = [] 
 
@@ -200,8 +206,12 @@ def main():
 	room = Room3()
 	rooms.append(room)
 
+
 	current_room_no = 0
 	current_room = rooms[current_room_no]
+
+#== Nothing surprising here , regular game mechanics to keep the game
+#== going on till the user hits X
 
 	done = False
 
@@ -278,14 +288,3 @@ def main():
  	
 if __name__ == "__main__":
     main()
-				
-
- 
-
-
-
-
-
-		
-		
-			
