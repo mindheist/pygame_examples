@@ -81,7 +81,12 @@ class Player(pygame.sprite.Sprite):
  		self.rect.x += self.change_x
  		# did the above update cause us to hit the wall ?
         # use the sprite collide to see , if the player hit the wall
+        # So the following lines are the ones that make the wall opaque;
+        # Like mentioned in the previous moving_sprites example; we simply draw the
+        # Player when we get close to the wall ! A very important trick to remember
+        # Note that pretty much all of the visual effects work by redrawing.
 		block_hit_list = pygame.sprite.spritecollide(self, walls, False)
+
 		for block in block_hit_list:
 			if self.change_x > 0:
 				self.rect.right = block.rect.left
@@ -118,7 +123,8 @@ class Room(object):
 class Room1(Room):
 	def __init__(self):
 		Room.__init__(self)
-#=== The following is a array of individual walls ====#
+#=== The following is a List of individual walls ====#
+#=== Python List Vs Array - Read about Array being a special List in python ==#
 		walls = [[0, 0, 20, 250, WHITE],
                  [0, 350, 20, 250, WHITE],
                  [780, 0, 20, 250, WHITE],
