@@ -70,15 +70,21 @@ class Player(pygame.sprite.Sprite):
 		self.rect.y = y 
 
 #===== Player Change Speed method ====#
-
+#===== Note : For every Key press (for Key Down & Key Up),the below function gets called 
+#===== Depending on what x & y are passed into this function , the player moves fast accordingly
 	def ChangeSpeed(self, x, y):
 		self.change_x += x
 		self.change_y += y
- # == FIND OUT,WHY THE ABOVE VARIABLE is not self.x ===#
 
- 	def move(self, walls):
+	""" So , why do we need to pass x and y into the ChangeSpeed function , instead of
+	simply hard coding it .. The reason we do this is ,the player might have different speeds.
+	If the player get hold of a magic mushroom, the game can speed him up for a few seconds
+	In those scenarios , we simply call ChangeSpeed function with faster X and Y """
+ # == FIND OUT,WHY THE ABOVE VARIABLE is not self.x ===#
+	
+	def move(self, walls):
  		# Move LEFT or RIGHT
- 		self.rect.x += self.change_x
+		self.rect.x += self.change_x
  		# did the above update cause us to hit the wall ?
         # use the sprite collide to see , if the player hit the wall
         # So the following lines are the ones that make the wall opaque;
@@ -180,7 +186,7 @@ class Room3(Room):
                 wall = Wall(x, y, 20, 200, RED)
                 self.wall_list.add(wall)
  #=== Draws the White Lines in the third room
- 
+
         for x in range(150, 700, 100):
             wall = Wall(x, 200, 20, 200, WHITE)
             self.wall_list.add(wall)
