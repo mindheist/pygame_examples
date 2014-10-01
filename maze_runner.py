@@ -173,10 +173,13 @@ class Room3(Room):
             wall = Wall(item[0], item[1], item[2], item[3], item[4])
             self.wall_list.add(wall)
  
+ #=== Draws the Red Lines in the Third Room
+
         for x in range(100, 800, 100):
             for y in range(50, 451, 300):
                 wall = Wall(x, y, 20, 200, RED)
                 self.wall_list.add(wall)
+ #=== Draws the White Lines in the third room
  
         for x in range(150, 700, 100):
             wall = Wall(x, 200, 20, 200, WHITE)
