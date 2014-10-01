@@ -1,5 +1,19 @@
 # A simple program to Draw Walls for my game 
 # Goal : To understand how sprites works and are implemented
+# Also adding a quick link to the Game Loop Document about how to think like 
+# a computer scientist :
+# 17.1 Here desribes a Game Loop : 
+# http://openbookproject.net/thinkcs/python/english3e/pygame.html
+#       Poll And Handle Events from the user
+#                 ||
+#                 ||
+#   Update the game elements 
+#                 ||
+#   Draw the elements on the surface
+#                 ||
+#   Show the elements on the surface ( pygame.display.flip)
+
+
 import pygame
 
 #=== DEFINE COLORS ====#
@@ -48,7 +62,13 @@ class Player ( pygame.sprite.Sprite):
 		self.change_y = self.change_y + y 
 
 	def update(self,Walls):
+
 		self.rect.x += self.change_x
+# === The following code makes the wall opaque ; the way the walls are made 
+# === opaque is a redraw trick (just like how a moving sprite is also a redraw trick)
+# === A moving box is nothing but a repeatedly drawn box one-next-to-the-other
+# === To achieve opaqueness of the wall , we basically redraw the box at the 
+# === intersection of the wall and the player repeatedly
 
 		block_hit_list = pygame.sprite.spritecollide(self,Walls,False)
 		for block in block_hit_list:
@@ -123,7 +143,7 @@ while not done:
 			elif event.key == pygame.K_DOWN:
 				player.ChangeSpeed(0,-5)
   
-	# Understand the order below #	
+	# Understand the order below #	Refer to the Game Loop to understand this order
 	player.update(wall_list)
 	screen.fill(BLACK)
 	all_sprite_list.draw(screen)
