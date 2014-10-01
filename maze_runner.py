@@ -232,6 +232,10 @@ def main():
 					player.ChangeSpeed(0,5)
 
 # === Understand this Key-up & Why it is contradictory to KeyDown above==#
+# === Key Up and Key Down are contradictory because ; Key Down is supposed to
+# === Accelerate and Releasing the Key is supposed to decelerate the Player
+# === Previously, I had Key Up as also accelerate ; this made the player move
+# === super fast.
 			
 			if event.type == pygame.KEYUP:
 				if event.key == pygame.K_LEFT:
