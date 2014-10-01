@@ -105,23 +105,23 @@ while not done:
 
 		elif event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_LEFT:
-				player.ChangeSpeed(-1,0)
+				player.ChangeSpeed(-5,0)
 			elif event.key == pygame.K_RIGHT:
-				player.ChangeSpeed(1,0)
+				player.ChangeSpeed(5,0)
 			elif event.key == pygame.K_UP:
-				player.ChangeSpeed(0,-1)
+				player.ChangeSpeed(0,-5)
 			elif event.key == pygame.K_DOWN:
-				player.ChangeSpeed(0,1)
+				player.ChangeSpeed(0,5)
 
 		elif event.type ==pygame.KEYUP:
 			if event.key == pygame.K_LEFT:
-				player.ChangeSpeed(-1,0)
+				player.ChangeSpeed(5,0)
 			elif event.key == pygame.K_RIGHT:
-				player.ChangeSpeed(1,0)
+				player.ChangeSpeed(-5,0)
 			elif event.key ==pygame.K_UP:
-				player.ChangeSpeed(0,-1)
+				player.ChangeSpeed(0,5)
 			elif event.key == pygame.K_DOWN:
-				player.ChangeSpeed(0,1)
+				player.ChangeSpeed(0,-5)
   
 	# Understand the order below #	
 	player.update(wall_list)
