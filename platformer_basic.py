@@ -18,6 +18,12 @@ SCREEN_HEIGHT = 600
 #============================================================
 
 class Player (pygame.sprite.Sprite):
+	change_x = 0
+	change_y = 0
+# A quick change from the previous maze runner example is that ; the view has changed;
+# The maze runner has a view from the top of the maze;
+# The platformer has a sideways view ; and also we need to include the concept of gravity
+
 	"""This is the Player class,this is a sub class of the sprite superclass"""
 	"""Call the contructor of this class"""
 	def __init__(self):
@@ -30,5 +36,206 @@ class Player (pygame.sprite.Sprite):
 		self.image = pygame.Surface([width,height])
 		self.image.fill(RED)
 		self.rect = self.image.get_rect()
+
+	def update(self):
+		"""Move the Player"""
+		#gravity
+		self.calc_gravity()
+
+		#Move up and Down
+		self.rect.x = self.rect.x + self.change_x
+
+	    #once we hit a wall , detect collision
+		block_hit_list = pygame.sprite.spritecollide(self,self.level.platform_list,False)
+		for block in block_hit_list:
+			if self.rect.x > 0 :
+				self.rect.right = block.rect.left
+			else :
+				self.rect.left = block.rect.right
+# Move along the y-axis
+
+		self.rect.y = self.rect.y + self.change_y
+		
+		block_hit_list = pygame.sprite.spritecollide(self,self.level.platform_list,False)
+		for  block in block_hit_list:
+			if self.rect.y > 0:
+				self.rect.bottom = block.rect.top
+			else:
+				self.rect.top = block.rect.bottom
+
+	def calc_gravity(self):
+
+			if self.change_y ==0:
+				self.change_y = 1
+			else:
+				self.change_y += .35
+
+		#See if we are on the ground - Try to Understand how this works;
+
+			if self.rect.y >= SCREEN_HEIGHT - self.rect.height and self.change_y >= 0:
+				self.change_y = 0
+				self.rect.y = SCREEN_HEIGHT - self.rect.height
+
+	def jump(self):
+		""" Actions when the user hits the Jump button,let me come back to this
+		after writing the platform class; should jump be a single button or 
+		should it be a combination of right arrow and up arrow ? """
+		self.rect.y += 2
+		platform_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
+		self.rect.y -= 2
+        # If it is ok to jump, set our speed upwards
+		if len(platform_hit_list) > 0 or self.rect.bottom >= SCREEN_HEIGHT:
+			self.change_y = -10
+
+	def go_left(self):
+		""" Move left by 6 pixels ? Find out what the accurate metric is
+		This is called when the user hits the left button"""
+		self.change_x = self.change_x -6
+
+	def go_right(self):
+		"""Move right by 6 pxls. This is called when the user hits the right arrow"""
+		self.change_x = self.change_x + 6
+
+	def stop(self):
+		"""Called when the user lets go of the left or rightkey
+		This would go in the KEYUP block later on in the code"""
+		self.change_x = 0
+
+class Platform(pygame.sprite.Sprite):
+
+	#== Platform objects are created using this
+	def __init__(self,width,height):
+		pygame.sprite.Sprite.__init__(self)
+		self.image = pygame.Surface([width,height])
+		self.image.fill(GREEN)
+
+		self.rect = self.image.get_rect()
+		#self.rect.x = x
+		#self.rect.y = y
+
+#== Keep an eye on the above Class
+#== Why do we pass an Object here ?
+class Level(object):
+	#== This is not a sprite ; and is a generic super class for all Levels
+	#== Remember this common philosophy of using Lists for the objects you draw on the screen
+	#== All the Walls we drew in maze_runner were added to a common list
+	#== In this , we would add all the platforms we drew to a platform list.
+	platform_list = None
+	enemy_list    = None 
+	""" There are no enemies in the game yet"""
+
+	background = None
+
+	def __init__(self,player):
+		self.platform_list = pygame.sprite.Group()
+		self.enemy_list    = pygame.sprite.Group()
+		self.player        = player
+
+
+	def update(self):
+		self.platform_list.update()
+		self.enemy_list.update()
+
+
+	def draw(self,screen):
+		screen.fill(BLUE)
+		self.platform_list.draw(screen)
+		self.enemy_list.draw(screen)
+
+class Level_01(Level):
+	def  __init__(self,player):
+		Level.__init__(self,player)
+
+		level=[[210,70,500,500],
+			   [210,70,200,400],
+			   [210,70,600,300],
+				]
+
+		for platform in level:
+			block = Platform(platform[0],platform[1])
+			block.rect.x = platform[2]
+			block.rect.y = platform[3]
+			block.player = self.player #==Why do we need this
+			self.platform_list.add(block)
+
+def main():
+
+	pygame.init()
+	screen = pygame.display.set_mode([SCREEN_WIDTH,SCREEN_HEIGHT])
+	pygame.display.set_caption("Platform Jumper")
+
+	player = Player()
+
+	level_list = []
+	level_list.append(Level_01(player)) #===Why
+
+	current_level_no = 0
+	current_level = level_list[current_level_no]
+
+	active_sprite_list = pygame.sprite.Group()
+	player.level = current_level
+
+	player.rect.x = 340
+	player.rect.y = SCREEN_HEIGHT - player.rect.height
+	active_sprite_list.add(player)
+
+	done = False
+#-------- Main Program Loop ---------#
+
+	while not done:
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				done = True
+
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_LEFT:
+					player.go_left()
+				if event.key ==pygame.K_RIGHT:
+					player.go_right()
+				if event.key == pygame.K_UP:
+					player.jump()
+			if event.type == pygame.KEYUP:
+				if event.key == pygame.K_LEFT and player.change_x < 0 :
+					player.stop()
+				elif event.key ==pygame.K_RIGHT and player.change_x > 0:
+					player.stop()
+
+		active_sprite_list.update()
+		current_level.update()
+
+		if player.rect.right > SCREEN_WIDTH:
+			player.rect.right = SCREEN_WIDTH
+
+		if player.rect.left <0:
+			player.rect.left = 0
+
+		current_level.draw(screen)
+		active_sprite_list.draw(screen)
+
+		pygame.display.flip()
+
+		clock.tick(60)
+
+	pygame.quit()
+
+if __name__ == "__main__":
+	main()
+
+
+					
+				
+				
+		
+		
+
+
+
+		
+			
+
+		
+
+
+			
 
 
