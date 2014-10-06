@@ -173,10 +173,12 @@ class Player (pygame.sprite.Sprite):
 		""" Move left by 6 pixels ? Find out what the accurate metric is
 		This is called when the user hits the left button"""
 		self.change_x = self.change_x -6
+		self.direction="L"
 
 	def go_right(self):
 		"""Move right by 6 pxls. This is called when the user hits the right arrow"""
 		self.change_x = self.change_x + 6
+		self.direction = "R"
 
 	def stop(self):
 		"""Called when the user lets go of the left or rightkey
@@ -208,6 +210,9 @@ class Level(object):
 
 	background = None
 
+	world_shift = 0
+	level_limit = -700
+
 	def __init__(self,player):
 		self.platform_list = pygame.sprite.Group()
 		self.enemy_list    = pygame.sprite.Group()
@@ -224,15 +229,44 @@ class Level(object):
 		self.platform_list.draw(screen)
 		self.enemy_list.draw(screen)
 
+	def shift_world(self,shift_x):
+		self.world_shift += shift_x
+
+		for platform in self.platform_list:
+			platform.rect.x += shift_x
+
+		for enemy in self.enemy_list:
+			enemy.rect.x += shift_x
+
 class Level_01(Level):
 	def  __init__(self,player):
 		Level.__init__(self,player)
+
+		self.level_limit = -700
 
 		level=[[210,50,500,500],
 			   [210,50,200,400],
 			   [210,50,600,300],
 			   [210,50,20,120],
 			   [210,50,200,200]
+				]
+
+		for platform in level:
+			block = Platform(platform[0],platform[1])
+			block.rect.x = platform[2]
+			block.rect.y = platform[3]
+			block.player = self.player #==Why do we need this
+			self.platform_list.add(block)
+
+class Level_02(Level):
+	def  __init__(self,player):
+		Level.__init__(self,player)
+
+		self.level_limit = -1000
+
+		level=[[210,30,500,500],
+			   [210,30,200,400],
+			   [210,30,600,300],
 				]
 
 		for platform in level:
@@ -253,6 +287,7 @@ def main():
     #== Create a level list ; this will hold the levels ; right now we have only one Level   
 	level_list = []
 	level_list.append(Level_01(player))
+	level_list.append(Level_02(player))
 
 	current_level_no = 0
 	current_level = level_list[current_level_no]
@@ -288,6 +323,25 @@ def main():
 
 		active_sprite_list.update()
 		current_level.update()
+
+		if player.rect.right >= 500:
+			diff = player.rect.right - 500
+			player.rect.right = 500
+			current_level.shift_world(-diff)
+  
+        # If the player gets near the left side, shift the world right (+x)
+		if player.rect.left <= 120:
+			diff = 120 - player.rect.left
+			player.rect.left = 120
+			current_level.shift_world(diff)
+
+		current_position = player.rect.x + current_level.world_shift
+		if current_position < current_level.level_limit:
+			player.rect.x = 120
+			if current_level_no < len(level_list)-1:
+				current_level_no += 1
+				current_level = level_list[current_level_no]
+				player.level = current_level
 
 		if player.rect.right > SCREEN_WIDTH:
 			player.rect.right = SCREEN_WIDTH
