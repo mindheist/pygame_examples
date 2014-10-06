@@ -1,5 +1,13 @@
+#== http://www.sears.com/nintendo-boy-s-graphic-t-shirt-pikachu/p-040VA71179812P
+#== https://www.youtube.com/watch?v=bMt47wvK6u0
+#== http://higherorderfun.com/blog/
+#== http://openbookproject.net/thinkcs/python/english3e/index.html
+#== http://programarcadegames.com/python_examples/show_file.php?file=platform_jumper.py
 
-
+#== http://www.gilt.com/look/?s_id=dfbd312e324f9b33b4bf6f027246d5f6f00593524b58da205ebd56e79f1f2b67_0_1033759382&utm_source=gilt&utm_medium=email
+#== &utm_campaign=visitrec_09302014&lk=1004479233amlf7dym7ltrdg326aq9d44awf9lvz
+#== Tommy Ref blog : http://supermeatboy.com/134/How_do_I_get_started_programming_games___/
+#== There is a difference in the way we need to think 
 #== 1. Import the pygame library
 import pygame
 #=== 2. Define colors ,screen width and height, Clock
@@ -18,6 +26,7 @@ SCREEN_HEIGHT = 600
 #============================================================
 
 class Player (pygame.sprite.Sprite):
+
 	change_x = 0
 	change_y = 0
 # A quick change from the previous maze runner example is that ; the view has changed;
@@ -29,9 +38,9 @@ class Player (pygame.sprite.Sprite):
 	def __init__(self):
 		"""Call the contructor of the super class now"""
 		pygame.sprite.Sprite.__init__(self)
-		""" Draw the Player now into the surface and assign it to image"""
+#== Draw the Player now into the surface and assign it to image
 		width = 40
-		height = 60 
+		height = 40 
 		""" In the program , we already specify the width and height of the Player"""
 		self.image = pygame.Surface([width,height])
 		self.image.fill(RED)
@@ -65,10 +74,10 @@ class Player (pygame.sprite.Sprite):
 
 	def calc_gravity(self):
 
-			if self.change_y ==0:
-				self.change_y = 1
-			else:
-				self.change_y += .35
+			#if self.change_y ==0:   # This is a fix for moving platforms 
+			#	self.change_y = 1
+			#else:
+			self.change_y += .35
 
 		#See if we are on the ground - Try to Understand how this works;
 
@@ -146,9 +155,11 @@ class Level_01(Level):
 	def  __init__(self,player):
 		Level.__init__(self,player)
 
-		level=[[210,70,500,500],
-			   [210,70,200,400],
-			   [210,70,600,300],
+		level=[[210,50,500,500],
+			   [210,50,200,400],
+			   [210,50,600,300],
+			   [210,50,20,120],
+			   [210,50,200,200]
 				]
 
 		for platform in level:
@@ -159,19 +170,21 @@ class Level_01(Level):
 			self.platform_list.add(block)
 
 def main():
-
+    #== Initialize pygame , set_mode for the display and set caption
 	pygame.init()
 	screen = pygame.display.set_mode([SCREEN_WIDTH,SCREEN_HEIGHT])
 	pygame.display.set_caption("Platform Jumper")
-
+    #== Create a player Object
 	player = Player()
-
+    
+    #== Create a level list ; this will hold the levels ; right now we have only one Level   
 	level_list = []
-	level_list.append(Level_01(player)) #===Why
+	level_list.append(Level_01(player))
 
 	current_level_no = 0
 	current_level = level_list[current_level_no]
-
+     
+    #=== Creating an Active_Sprite_List that will contain the player to start off with 
 	active_sprite_list = pygame.sprite.Group()
 	player.level = current_level
 
@@ -226,9 +239,6 @@ if __name__ == "__main__":
 				
 				
 		
-		
-
-
 
 		
 			
