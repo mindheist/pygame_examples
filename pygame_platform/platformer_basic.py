@@ -228,6 +228,7 @@ class Level(object):
 		screen.fill(BLUE)
 		self.platform_list.draw(screen)
 		self.enemy_list.draw(screen)
+		screen.blit(self.background,(self.world_shift // 3,0))
 
 	def shift_world(self,shift_x):
 		self.world_shift += shift_x
@@ -242,7 +243,10 @@ class Level_01(Level):
 	def  __init__(self,player):
 		Level.__init__(self,player)
 
-		self.level_limit = -700
+		self.background = pygame.image.load("background_01.png").convert()
+		self.background.set_colorkey(WHITE)
+
+		self.level_limit = -2500
 
 		level=[[210,50,500,500],
 			   [210,50,200,400],
