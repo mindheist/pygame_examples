@@ -57,7 +57,7 @@ class Player (pygame.sprite.Sprite):
 	    #once we hit a wall , detect collision
 		block_hit_list = pygame.sprite.spritecollide(self,self.level.platform_list,False)
 		for block in block_hit_list:
-			if self.rect.x > 0 :
+			if self.change_x > 0 :
 				self.rect.right = block.rect.left
 			else :
 				self.rect.left = block.rect.right
@@ -67,7 +67,7 @@ class Player (pygame.sprite.Sprite):
 		
 		block_hit_list = pygame.sprite.spritecollide(self,self.level.platform_list,False)
 		for  block in block_hit_list:
-			if self.rect.y > 0:
+			if self.change_y > 0:
 				self.rect.bottom = block.rect.top
 			else:
 				self.rect.top = block.rect.bottom
