@@ -130,7 +130,7 @@ class Player (pygame.sprite.Sprite):
 	    #once we hit a wall , detect collision
 		block_hit_list = pygame.sprite.spritecollide(self,self.level.platform_list,False)
 		for block in block_hit_list:
-			if self.rect.x > 0 :
+			if self.change_x > 0 :
 				self.rect.right = block.rect.left
 			else :
 				self.rect.left = block.rect.right
@@ -140,7 +140,7 @@ class Player (pygame.sprite.Sprite):
 		
 		block_hit_list = pygame.sprite.spritecollide(self,self.level.platform_list,False)
 		for  block in block_hit_list:
-			if self.rect.y > 0:
+			if self.change_y > 0:
 				self.rect.bottom = block.rect.top
 			else:
 				self.rect.top = block.rect.bottom
@@ -228,7 +228,7 @@ class Level(object):
 		screen.fill(BLUE)
 		self.platform_list.draw(screen)
 		self.enemy_list.draw(screen)
-		screen.blit(self.background,(self.world_shift // 3,0))
+		#screen.blit(self.background,(self.world_shift // 3,0))
 
 	def shift_world(self,shift_x):
 		self.world_shift += shift_x
@@ -243,8 +243,8 @@ class Level_01(Level):
 	def  __init__(self,player):
 		Level.__init__(self,player)
 
-		self.background = pygame.image.load("background_01.png").convert()
-		self.background.set_colorkey(WHITE)
+		#self.background = pygame.image.load("background_01.png").convert()
+		#self.background.set_colorkey(WHITE)
 
 		self.level_limit = -2500
 
