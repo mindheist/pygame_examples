@@ -192,6 +192,8 @@ def main():
 	player.rect.y = SCREEN_HEIGHT - player.rect.height
 	active_sprite_list.add(player)
 
+#== Game Loop : Step 1 : Poll for events and handle them
+
 	done = False
 #-------- Main Program Loop ---------#
 
@@ -213,6 +215,8 @@ def main():
 				elif event.key ==pygame.K_RIGHT and player.change_x > 0:
 					player.stop()
 
+#== Game Loop : Step 2 : Update the sprites based on the inputs received above
+
 		active_sprite_list.update()
 		current_level.update()
 
@@ -222,8 +226,12 @@ def main():
 		if player.rect.left <0:
 			player.rect.left = 0
 
+#== Game Loop : Step 3 : Draw the players and the Walls on the screen
+
 		current_level.draw(screen)
 		active_sprite_list.draw(screen)
+
+#== Game Loop : Step 4 : Switch ! Display the stuff drawn on the Surface.
 
 		pygame.display.flip()
 

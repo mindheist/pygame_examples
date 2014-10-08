@@ -211,7 +211,7 @@ class Level(object):
 	background = None
 
 	world_shift = 0
-	level_limit = -700
+	level_limit = -500
 
 	def __init__(self,player):
 		self.platform_list = pygame.sprite.Group()
@@ -246,7 +246,7 @@ class Level_01(Level):
 		#self.background = pygame.image.load("background_01.png").convert()
 		#self.background.set_colorkey(WHITE)
 
-		self.level_limit = -2500
+		self.level_limit = -500
 
 		level=[[210,50,500,500],
 			   [210,50,200,400],
@@ -304,6 +304,8 @@ def main():
 	player.rect.y = SCREEN_HEIGHT - player.rect.height
 	active_sprite_list.add(player)
 
+#== Game Loop : Step 1 : Poll for events and handle them
+
 	done = False
 #-------- Main Program Loop ---------#
 
@@ -324,6 +326,8 @@ def main():
 					player.stop()
 				elif event.key ==pygame.K_RIGHT and player.change_x > 0:
 					player.stop()
+
+#== Game Loop : Step 2 : Update the Sprites based on the above inputs
 
 		active_sprite_list.update()
 		current_level.update()
@@ -353,8 +357,12 @@ def main():
 		if player.rect.left <0:
 			player.rect.left = 0
 
+#== Game Loop : Step 3 : Draw the updates sprites on the screen
+
 		current_level.draw(screen)
 		active_sprite_list.draw(screen)
+
+#== Game Loop : Step 4 : Switch ! Flip and Display the Sprites on screen
 
 		pygame.display.flip()
 
