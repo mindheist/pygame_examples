@@ -22,6 +22,8 @@ BLACK = (0,0,0)
 WHITE = (255,255,255)
 RED = (255,0,0)
 GREEN = (0,255,0)
+BLUE  = (0,0,255)
+GREY  = (84,84,84)
 
 #=========================#
 
@@ -118,6 +120,9 @@ player = Player(20,20,10)
 all_sprite_list.add(player)
 
 done = False
+
+# Game Loop has 4 Steps : Step 1 : Poll for inputs and handle them
+
 while not done:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
@@ -142,11 +147,19 @@ while not done:
 				player.ChangeSpeed(0,5)
 			elif event.key == pygame.K_DOWN:
 				player.ChangeSpeed(0,-5)
+
+# Game Loop has 4 Steps : Step 2: Update the player's position (wrt) the Walls
   
-	# Understand the order below #	Refer to the Game Loop to understand this order
+
 	player.update(wall_list)
-	screen.fill(BLACK)
+
+# Game Loop has 4 Steps : Step 3: Draw the Surface
+
+	screen.fill(GREY)
 	all_sprite_list.draw(screen)
+
+# Game Loop has 4 Steps : Step 4 : Show the stuff that has just been drawn 
+
 	pygame.display.flip()
 
 	clock.tick(60)
