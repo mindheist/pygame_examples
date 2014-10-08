@@ -228,6 +228,8 @@ def main():
 #== Nothing surprising here , regular game mechanics to keep the game
 #== going on till the user hits X
 
+#== Game Loop : Step 1 : Poll and handle events  
+
 	done = False
 
 	while not done:
@@ -262,6 +264,9 @@ def main():
 				if event.key ==pygame.K_DOWN:
 					player.ChangeSpeed(0,-5)
 		
+#== Game Loop : Step 2 : Update the Player and the Level and the world  
+
+
 		player.move(current_room.wall_list)
 		
 # == This part explains navigation between rooms and the wrapping structure ==#
@@ -293,12 +298,16 @@ def main():
 				current_room = rooms[current_room_no]
 				player.rect.x = 0
 
+#== Game Loop : Step 3 : Draw the updated stuff on the Surface 
+
         # --- Drawing ---
 		screen.fill(BLACK)
 		
 		movingsprites.draw(screen)
 		current_room.wall_list.draw(screen)
-		
+
+#== Game Loop : Step 4 : Show the sprites that you just drew
+
 		pygame.display.flip()
 		
 		clock.tick(60)
