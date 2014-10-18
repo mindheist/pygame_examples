@@ -10,6 +10,8 @@
 #== There is a difference in the way we need to think 
 #== 1. Import the pygame library
 import pygame
+import pygame.mixer
+
 from spritesheet_function import SpriteSheet
 #=== 2. Define colors ,screen width and height, Clock
 BLACK = (  0,   0,   0)
@@ -17,6 +19,12 @@ WHITE = (255, 255, 255)
 RED   = (255,   0,   0)
 GREEN = (  0, 255,   0)
 BLUE  = (  0,   0, 255)
+YELLOW= (255, 255,   0)
+
+pygame.mixer.init(21050, -16, 2, 2048)
+
+#bgm.play()
+
 
 clock = pygame.time.Clock()
 # == This will tick 60 times a minute later in the main loop
@@ -134,6 +142,8 @@ class Player (pygame.sprite.Sprite):
 				self.rect.right = block.rect.left
 			else :
 				self.rect.left = block.rect.right
+
+		#fire_hit_list = pygame.sprite.spritecollide(self,self.level,fire_platform_list,True)
 # Move along the y-axis
 
 		self.rect.y = self.rect.y + self.change_y
@@ -197,6 +207,24 @@ class Platform(pygame.sprite.Sprite):
 		#self.rect.x = x
 		#self.rect.y = y
 
+class invisible_wall(pygame.sprite.Sprite):
+
+	def __init__(self,width,height):
+		pygame.sprite.Sprite.__init__(self)
+		self.image = pygame.Surface([width,height])
+		self.image.fill(WHITE)
+		self.rect = self.image.get_rect()
+		
+
+class fire_Platform(pygame.sprite.Sprite):
+
+	def __init__(self,width,height):
+		pygame.sprite.Sprite.__init__(self)
+		self.image = pygame.Surface([width,height])
+		self.image.fill(YELLOW)
+
+		self.rect = self.image.get_rect()
+
 #== Keep an eye on the above Class
 #== Why do we pass an Object here ?
 class Level(object):
@@ -246,12 +274,14 @@ class Level_01(Level):
 	def  __init__(self,player):
 		Level.__init__(self,player)
 
-		self.background = pygame.image.load("background_01.png").convert()
+		self.background = pygame.image.load("mars4.jpg").convert()
 		self.background.set_colorkey(WHITE)
 
 		self.level_limit = -2500
 
-		level=[[210,50,500,500],
+		level=[
+			   [50,30,600,100],
+			   [210,50,500,500],
 			   [210,50,200,400],
 			   [210,50,600,300],
 			   [210,50,20,120],
@@ -263,12 +293,33 @@ class Level_01(Level):
 			   [210,30,2100,500]
 				]
 
+		fire_platform_list =[[210,20,2100,200]]
+
+		invisible_wall_list = [[10,600,0,0],
+								[10,600,0,-10]]
+
 		for platform in level:
 			block = Platform(platform[0],platform[1])
 			block.rect.x = platform[2]
 			block.rect.y = platform[3]
 			block.player = self.player #==Why do we need this
 			self.platform_list.add(block)
+
+		for platform in fire_platform_list :
+			block = fire_Platform(platform[0],platform[1])
+			block.rect.x = platform[2]
+			block.rect.y = platform[3]
+			self.platform_list.add(block)
+
+
+		for platform in invisible_wall_list:
+			block = invisible_wall(platform[0],platform[1])
+			block.rect.x = platform[2]
+			block.rect.y = platform[3]
+			self.platform_list.add(block)
+
+
+
 
 class Level_02(Level):
 	def  __init__(self,player):
@@ -294,6 +345,8 @@ class Level_02(Level):
 def main():
     #== Initialize pygame , set_mode for the display and set caption
 	pygame.init()
+	bgm = pygame.mixer.Sound('mario.ogg')
+	#bgm.play()
 	screen = pygame.display.set_mode([SCREEN_WIDTH,SCREEN_HEIGHT])
 	pygame.display.set_caption("Platform Jumper")
     #== Create a player Object
@@ -321,6 +374,7 @@ def main():
 #-------- Main Program Loop ---------#
 
 	while not done:
+		bgm.play()
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				done = True

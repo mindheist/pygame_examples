@@ -130,9 +130,9 @@ while not done:
 
 		elif event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_LEFT:
-				player.ChangeSpeed(-5,0)
+				player.ChangeSpeed(-10,0)
 			elif event.key == pygame.K_RIGHT:
-				player.ChangeSpeed(5,0)
+				player.ChangeSpeed(10,0)
 			elif event.key == pygame.K_UP:
 				player.ChangeSpeed(0,-5)
 			elif event.key == pygame.K_DOWN:
@@ -140,9 +140,9 @@ while not done:
 
 		elif event.type ==pygame.KEYUP:
 			if event.key == pygame.K_LEFT:
-				player.ChangeSpeed(5,0)
+				player.ChangeSpeed(10,0)
 			elif event.key == pygame.K_RIGHT:
-				player.ChangeSpeed(-5,0)
+				player.ChangeSpeed(-10,0)
 			elif event.key ==pygame.K_UP:
 				player.ChangeSpeed(0,5)
 			elif event.key == pygame.K_DOWN:
