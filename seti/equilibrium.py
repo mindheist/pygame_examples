@@ -2,6 +2,7 @@
 
 import pygame
 import random
+import time
 
 # DEFINE COLORS
 
@@ -38,6 +39,7 @@ def main():
 
 	alien1 = pygame.image.load("alien1.jpg").convert()
 	#alien1.set_colorkey(WHITE)
+	catastrophes_sprite = pygame.image.load("catastrophes.png").convert()
 
 
 	basicfont = pygame.font.SysFont(None, 30)
@@ -87,7 +89,8 @@ def main():
 	screen.blit(text,textRect)
 	screen.blit(text2,textRect2)
 	screen.blit(text3,textRect3)
-	screen.blit(text4,textRect4)
+	#screen.blit(text4,textRect4)
+	screen.blit(catastrophes_sprite,(0,0))
 	all_sprites_list.draw(screen)
 
 	done = False
@@ -113,12 +116,16 @@ def main():
 					if s.rect.x ==250 and s.rect.y == 250:
 						print "Green Sprite"
 						screen.blit(background,(0,0))
-						screen.blit(alien1,(500,500))
+						
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
-						screen.blit(text4,textRect4)
+						#screen.blit(text4,textRect4)
+						screen.blit(catastrophes_sprite,(0,0))
 						all_sprites_list.draw(screen)
+						
+						screen.blit(alien1,(1200,1))
+							
 
 
 		clock.tick(60)
