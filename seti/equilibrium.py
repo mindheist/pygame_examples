@@ -34,10 +34,14 @@ def main():
 
 	screen = pygame.display.set_mode([screen_width,screen_height])
 
-	background = pygame.image.load("kepler1.jpg").convert()
+	background = pygame.image.load("kepler-dark.jpg").convert()
 	background.set_colorkey(WHITE)
 
 	alien1 = pygame.image.load("alien1.jpg").convert()
+	alien2 = pygame.image.load("alien2.jpg").convert()
+	alien3 = pygame.image.load("alien3.jpg").convert()
+	alien4 = pygame.image.load("alien4.jpg").convert()
+	alien5 = pygame.image.load("alien5.jpeg").convert()
 	#alien1.set_colorkey(WHITE)
 	catastrophes_sprite = pygame.image.load("catastrophes.png").convert()
 
@@ -72,15 +76,38 @@ def main():
 	all_sprites_list = pygame.sprite.Group()
      
 	star =Star ( GREEN,5,5)
-	star.rect.x = 250
+	star.rect.x = 750
 	star.rect.y = 250
 	star_list.add(star)
 	all_sprites_list.add(star)
 
+	star = Star(GREEN, 5, 5)
+	star.rect.x = 500
+	star.rect.y = 200
+	star_list.add(star)
+	all_sprites_list.add(star)
+
+	star = Star ( GREEN, 5 , 5)
+	star.rect.x = 850
+	star.rect.y = 300
+	star_list.add(star)
+	all_sprites_list.add(star)
+
+	star = Star ( GREEN, 5 , 5)
+	star.rect.x = 750
+	star.rect.y = 350
+	star_list.add(star)
+	all_sprites_list.add(star)
+
+	star = Star ( GREEN, 5 , 5)
+	star.rect.x = 600
+	star.rect.y = 500
+	star_list.add(star)
+	all_sprites_list.add(star)
 	
 	for i in range(70):
 		star = Star(RED,5,5)
-		star.rect.x = random.randrange(200,700)
+		star.rect.x = random.randrange(500,1000)
 		star.rect.y = random.randrange(53,543)
 		star_list.add(star)
 		all_sprites_list.add(star)
@@ -90,7 +117,7 @@ def main():
 	screen.blit(text2,textRect2)
 	screen.blit(text3,textRect3)
 	#screen.blit(text4,textRect4)
-	screen.blit(catastrophes_sprite,(0,0))
+	screen.blit(catastrophes_sprite,(5,5))
 	all_sprites_list.draw(screen)
 
 	done = False
@@ -113,20 +140,56 @@ def main():
 				print clicked_sprite 
 				for s in clicked_sprite:
 					print s.rect.x , s.rect.y
-					if s.rect.x ==250 and s.rect.y == 250:
+					if s.rect.x ==750 and s.rect.y == 250:
 						print "Green Sprite"
 						screen.blit(background,(0,0))
-						
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
 						#screen.blit(text4,textRect4)
-						screen.blit(catastrophes_sprite,(0,0))
+						screen.blit(catastrophes_sprite,(5,5))
 						all_sprites_list.draw(screen)
-						
 						screen.blit(alien1,(1200,1))
-							
 
+					elif s.rect.x ==500 and s.rect.y ==200 :
+						screen.blit(background,(0,0))
+						screen.blit(text,textRect)
+						screen.blit(text2,textRect2)
+						screen.blit(text3,textRect3)
+						#screen.blit(text4,textRect4)
+						screen.blit(catastrophes_sprite,(5,5))
+						all_sprites_list.draw(screen)
+						screen.blit(alien2,(1200,1))
+
+					elif s.rect.x ==850 and s.rect.y ==300 :
+						screen.blit(background,(0,0))
+						screen.blit(text,textRect)
+						screen.blit(text2,textRect2)
+						screen.blit(text3,textRect3)
+						#screen.blit(text4,textRect4)
+						screen.blit(catastrophes_sprite,(5,5))
+						all_sprites_list.draw(screen)
+						screen.blit(alien3,(1200,1))
+
+					elif s.rect.x ==750 and s.rect.y ==350 :
+						screen.blit(background,(0,0))
+						screen.blit(text,textRect)
+						screen.blit(text2,textRect2)
+						screen.blit(text3,textRect3)
+						#screen.blit(text4,textRect4)
+						screen.blit(catastrophes_sprite,(5,5))
+						all_sprites_list.draw(screen)
+						screen.blit(alien4,(1200,1))
+
+					elif s.rect.x ==600 and s.rect.y ==500 :
+						screen.blit(background,(0,0))
+						screen.blit(text,textRect)
+						screen.blit(text2,textRect2)
+						screen.blit(text3,textRect3)
+						#screen.blit(text4,textRect4)
+						screen.blit(catastrophes_sprite,(5,5))
+						all_sprites_list.draw(screen)
+						screen.blit(alien5,(1200,1))
 
 		clock.tick(60)
 
