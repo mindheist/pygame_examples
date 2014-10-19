@@ -11,6 +11,7 @@ WHITE = (255,255,255)
 RED   = (255,  0,  0)
 GREEN = (  0,255,  0)
 BLUE  = (  0,  0,255)
+MAROON = (128,0,0)
 
 # SCREEN SIZE
 
@@ -198,7 +199,9 @@ def main():
 						screen.blit(text4,textRect4)
 						screen.blit(catastrophes_sprite,(110,10))
 						all_sprites_list.draw(screen)
-						pygame.draw.rect(screen,WHITE, (1150,1,350,500),1)
+						pygame.draw.rect(screen,WHITE, (1150,1,350,100))
+						pygame.draw.rect(screen,GREEN, (1150,101,350,300))
+						pygame.draw.rect(screen,MAROON,(1150,401,350,100))
 
 		clock.tick(60)
 
