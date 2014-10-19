@@ -24,6 +24,8 @@ screen_height = 1000
 
 clock = pygame.time.Clock()
 
+menu_font = pygame.font.Font(None, 40)
+
 class Star(pygame.sprite.Sprite):
 	def __init__(self,color,width,height):
 		pygame.sprite.Sprite.__init__(self)
@@ -31,6 +33,7 @@ class Star(pygame.sprite.Sprite):
 		self.image.fill(color)
 		self.rect = self.image.get_rect()
 
+	
 def main():
 	
 	pygame.init()
@@ -40,11 +43,14 @@ def main():
 	background = pygame.image.load("kepler-dark.jpg").convert()
 	background.set_colorkey(WHITE)
 
+
 	star1 = pygame.image.load("star1.jpg").convert()
 	star2 = pygame.image.load("star2.jpg").convert()
 	star3 = pygame.image.load("star3.jpg").convert()
 	star4 = pygame.image.load("star4.jpg").convert()
 	star5 = pygame.image.load("star5.jpg").convert()
+
+	contact1 = pygame.image.load("contact1.jpg").convert()
 
 	alien1 = pygame.image.load("alien1.jpg").convert()
 
@@ -75,12 +81,59 @@ def main():
 	textRect4.x = 4
 	textRect4.y = 73
 
-	buttonWhiteBg = pygbutton.PygButton((150, 50, 60, 30), 'White')
-	buttonRedBg = pygbutton.PygButton((150, 100, 60, 30), 'Red')
-	buttonGreenBg = pygbutton.PygButton((150, 150, 60, 30), 'Green')
-	allbuttons = (buttonWhiteBg, buttonRedBg, buttonGreenBg)
+	basicfont = pygame.font.SysFont(None, 30)
+	menu_text_1 = basicfont.render('BIG BANG THEORY', True, GREEN, BLACK)
+	menutextRect1=menu_text_1.get_rect()
+	menutextRect1.x = 1150
+	menutextRect1.y = 610
 
+	menu_text_2 = basicfont.render('NUCLEAR FISSION', True, GREEN, BLACK)
+	menutextRect2=menu_text_2.get_rect()
+	menutextRect2.x = 1150
+	menutextRect2.y = 650
 
+	menu_text_3 = basicfont.render('EVOLUTION/NATURAL SELECTION', True, GREEN, BLACK)
+	menutextRect3=menu_text_3.get_rect()
+	menutextRect3.x = 1150
+	menutextRect3.y = 690
+
+	menu_text_4 = basicfont.render('CLOUD COMPUTING', True, GREEN, BLACK)
+	menutextRect4=menu_text_4.get_rect()
+	menutextRect4.x = 1150
+	menutextRect4.y = 730
+
+	"""
+	text_array = ['POETRY', 'CULTURE' , 'DANCE' , 'FILM']
+	menu_text = []
+	menutextRect = []
+
+	for i in range (1,4):
+		menu_text[i] = basicfont.render( text_array[i],True,GREEN,BLACK)
+		menutextRect[i] = menu_text[i].get_rect()
+		menutextRect[i].x = 1150
+		menutextRect[i].y = 730 + (i*40)
+	"""
+
+	menu_text_5 = basicfont.render('DANCE', True, GREEN, BLACK)
+	menutextRect5=menu_text_5.get_rect()
+	menutextRect5.x = 1150
+	menutextRect5.y = 770
+
+	menu_text_6 = basicfont.render('FILM', True, GREEN, BLACK)
+	menutextRect6=menu_text_6.get_rect()
+	menutextRect6.x = 1150
+	menutextRect6.y = 810
+
+	menu_text_7 = basicfont.render('SEND', True, GREEN, BLACK)
+	menutextRect7=menu_text_7.get_rect()
+	menutextRect7.x = 1300
+	menutextRect7.y = 900
+
+	basicfont = pygame.font.SysFont(None, 40)
+	menu_text_9 = basicfont.render('MESSAGE SENT', True, GREEN, BLACK)
+	menutextRect9=menu_text_9.get_rect()
+	menutextRect9.x = 1200
+	menutextRect9.y = 900
 
 	star_list = pygame.sprite.Group()
 
@@ -146,14 +199,6 @@ def main():
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				done = True
-
-			buttonBgColor = None
-			if 'click' in buttonWhiteBg.handleEvent(event):
-				buttonBgColor = WHITE
-			if 'click' in buttonRedBg.handleEvent(event):
-				buttonBgColor = RED
-			if 'click' in buttonGreenBg.handleEvent(event):
-				buttonBgColor = GREEN
 
 			if event.type == pygame.MOUSEBUTTONUP:
 				pos = pygame.mouse.get_pos()
@@ -226,7 +271,7 @@ def main():
 						pygame.draw.rect(screen,GREEN, (1150,101,350,300))
 						pygame.draw.rect(screen,MAROON,(1150,401,350,100))
 
-				if (pos[0] >= 1189 and pos[0] <= 1289):
+				if (pos[0] >= 1189 and pos[0] <= 1289) and (pos[1] >=445 and pos[1]<=472):
 					screen.blit(background,(0,0))
 					screen.blit(text,textRect)
 					screen.blit(text2,textRect2)
@@ -235,7 +280,43 @@ def main():
 					screen.blit(catastrophes_sprite,(110,10))
 					all_sprites_list.draw(screen)
 					screen.blit(star1,(1150,1))
-					screen.blit(alien1,(1150,520))
+					pygame.draw.rect(screen,MAROON,(1150,601,350,500))
+					screen.blit(menu_text_1,menutextRect1)
+					screen.blit(menu_text_2,menutextRect2)
+					screen.blit(menu_text_3,menutextRect3)
+					screen.blit(menu_text_4,menutextRect4)
+					screen.blit(menu_text_5,menutextRect5)
+					screen.blit(menu_text_6,menutextRect6)
+					screen.blit(menu_text_7,menutextRect7)
+					#screen.blit(alien1,(1150,520))
+
+
+
+
+				if (pos[0] >= 1300 and pos[0] <= 1350):
+					screen.blit(background,(0,0))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					screen.blit(star1,(1150,1))
+					pygame.draw.rect(screen,MAROON,(1150,601,350,500))
+
+					pygame.time.wait(1000)
+
+					#screen.blit(menu_text_8,menutextRect8)
+					screen.blit(menu_text_9,menutextRect9)
+
+					#pygame.time.wait(5000)
+
+					#screen.blit(contact1,(1,521))
+
+					
+
+
+
 
 
 
