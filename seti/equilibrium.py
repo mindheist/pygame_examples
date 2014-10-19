@@ -52,6 +52,9 @@ def main():
 
 	contact1 = pygame.image.load("contact1.jpg").convert()
 
+	knowledge = pygame.image.load("knowledge.jpg").convert()
+	message_sent = pygame.image.load("message-sent.jpg").convert()
+
 	alien1 = pygame.image.load("alien1.jpg").convert()
 
 	catastrophes_sprite = pygame.image.load("catastrophes.png").convert()
@@ -129,11 +132,6 @@ def main():
 	menutextRect7.x = 1300
 	menutextRect7.y = 900
 
-	basicfont = pygame.font.SysFont(None, 40)
-	menu_text_9 = basicfont.render('MESSAGE SENT', True, GREEN, BLACK)
-	menutextRect9=menu_text_9.get_rect()
-	menutextRect9.x = 1200
-	menutextRect9.y = 900
 
 	star_list = pygame.sprite.Group()
 
@@ -273,27 +271,27 @@ def main():
 
 				if (pos[0] >= 1189 and pos[0] <= 1289) and (pos[1] >=445 and pos[1]<=472):
 					screen.blit(background,(0,0))
-					screen.blit(text,textRect)
-					screen.blit(text2,textRect2)
-					screen.blit(text3,textRect3)
-					screen.blit(text4,textRect4)
+					screen.blit(text,textRect)    #Pandemic
+					screen.blit(text2,textRect2)  #Famine
+					screen.blit(text3,textRect3)  #Pollution
+					screen.blit(text4,textRect4)  #War
 					screen.blit(catastrophes_sprite,(110,10))
 					all_sprites_list.draw(screen)
 					screen.blit(star1,(1150,1))
-					pygame.draw.rect(screen,MAROON,(1150,601,350,500))
-					screen.blit(menu_text_1,menutextRect1)
-					screen.blit(menu_text_2,menutextRect2)
-					screen.blit(menu_text_3,menutextRect3)
-					screen.blit(menu_text_4,menutextRect4)
-					screen.blit(menu_text_5,menutextRect5)
-					screen.blit(menu_text_6,menutextRect6)
-					screen.blit(menu_text_7,menutextRect7)
+					screen.blit(knowledge,(1150,505))
+					break
+					#pygame.draw.rect(screen,MAROON,(1150,601,350,500))
+					#screen.blit(menu_text_1,menutextRect1) #BigBang
+					#screen.blit(menu_text_2,menutextRect2) # Nuclear Fission
+					#screen.blit(menu_text_3,menutextRect3) # Evolution / Natural Selection
+					#screen.blit(menu_text_4,menutextRect4) # Cloud Computing
+					#screen.blit(menu_text_5,menutextRect5) # Dance 
+					#screen.blit(menu_text_6,menutextRect6) # Film
+					#screen.blit(menu_text_7,menutextRect7) # Send
 					#screen.blit(alien1,(1150,520))
 
 
-
-
-				if (pos[0] >= 1300 and pos[0] <= 1350):
+				if (pos[0] >= 1190 and pos[0] <= 1300) and (pos[1] >=952 and pos[1]<=980):
 					screen.blit(background,(0,0))
 					screen.blit(text,textRect)
 					screen.blit(text2,textRect2)
@@ -301,17 +299,39 @@ def main():
 					screen.blit(text4,textRect4)
 					screen.blit(catastrophes_sprite,(110,10))
 					all_sprites_list.draw(screen)
-					screen.blit(star1,(1150,1))
-					pygame.draw.rect(screen,MAROON,(1150,601,350,500))
+					#screen.blit(star1,(1150,1))
+					#pygame.draw.rect(screen,MAROON,(1150,601,350,500))
 
-					pygame.time.wait(1000)
+					pygame.time.delay(1000)
 
-					#screen.blit(menu_text_8,menutextRect8)
-					screen.blit(menu_text_9,menutextRect9)
+					screen.blit(message_sent,(1150,525))
 
-					#pygame.time.wait(5000)
+				
+				if (pos[0] >= 1406  and pos[0]<= 1468 ) and (pos[1]>=540 and pos[1]<= 570 ):
+					screen.blit(background,(0,0))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					pygame.time.delay(2000)
+					screen.blit(contact1,(1,521)) # first alien contact
 
-					#screen.blit(contact1,(1,521))
+				if (pos[0] >= 40  and pos[0]<= 140 ) and (pos[1]>=964 and pos[1]<= 994 ):
+					screen.blit(background,(0,0))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+
+					
+
+
+
+
 
 					
 
