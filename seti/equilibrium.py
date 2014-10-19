@@ -37,38 +37,37 @@ def main():
 	background = pygame.image.load("kepler-dark.jpg").convert()
 	background.set_colorkey(WHITE)
 
-	alien1 = pygame.image.load("alien1.jpg").convert()
+	alien1 = pygame.image.load("alien_1.jpg").convert()
 	alien2 = pygame.image.load("alien2.jpg").convert()
 	alien3 = pygame.image.load("alien3.jpg").convert()
 	alien4 = pygame.image.load("alien4.jpg").convert()
 	alien5 = pygame.image.load("alien5.jpeg").convert()
-	#alien1.set_colorkey(WHITE)
 	catastrophes_sprite = pygame.image.load("catastrophes.png").convert()
 
 
-	basicfont = pygame.font.SysFont(None, 30)
-	text = basicfont.render('Pandemic', True, BLUE, BLACK)
+	basicfont = pygame.font.SysFont(None, 20)
+	text = basicfont.render('PANDEMIC', True, WHITE, BLACK)
 	textRect=text.get_rect()
 	textRect.x = 1
-	textRect.y = 1
+	textRect.y = 10
 
-	basicfont = pygame.font.SysFont(None, 30)
-	text2 = basicfont.render('Famine', True, BLUE, BLACK)
+	basicfont = pygame.font.SysFont(None, 20)
+	text2 = basicfont.render('FAMINE', True, WHITE, BLACK)
 	textRect2=text2.get_rect()
 	textRect2.x = 2
 	textRect2.y = 31
 
-	basicfont = pygame.font.SysFont(None, 30)
-	text3 = basicfont.render('Pollution', True, BLUE, BLACK)
+	basicfont = pygame.font.SysFont(None, 20)
+	text3 = basicfont.render('POLLUTION', True, WHITE, BLACK)
 	textRect3=text3.get_rect()
 	textRect3.x = 3
-	textRect3.y = 62
+	textRect3.y = 52
 
-	basicfont = pygame.font.SysFont(None, 30)
-	text4 = basicfont.render('War', True, BLUE, BLACK)
+	basicfont = pygame.font.SysFont(None, 20)
+	text4 = basicfont.render('WAR', True, WHITE, BLACK)
 	textRect4=text4.get_rect()
 	textRect4.x = 4
-	textRect4.y = 93
+	textRect4.y = 73
 
 
 	star_list = pygame.sprite.Group()
@@ -116,8 +115,8 @@ def main():
 	screen.blit(text,textRect)
 	screen.blit(text2,textRect2)
 	screen.blit(text3,textRect3)
-	#screen.blit(text4,textRect4)
-	screen.blit(catastrophes_sprite,(5,5))
+	screen.blit(text4,textRect4)
+	screen.blit(catastrophes_sprite,(110,10))
 	all_sprites_list.draw(screen)
 
 	done = False
@@ -146,18 +145,18 @@ def main():
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
-						#screen.blit(text4,textRect4)
-						screen.blit(catastrophes_sprite,(5,5))
+						screen.blit(text4,textRect4)
+						screen.blit(catastrophes_sprite,(110,10))
 						all_sprites_list.draw(screen)
-						screen.blit(alien1,(1200,1))
+						screen.blit(alien1,(1150,1))
 
 					elif s.rect.x ==500 and s.rect.y ==200 :
 						screen.blit(background,(0,0))
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
-						#screen.blit(text4,textRect4)
-						screen.blit(catastrophes_sprite,(5,5))
+						screen.blit(text4,textRect4)
+						screen.blit(catastrophes_sprite,(110,10))
 						all_sprites_list.draw(screen)
 						screen.blit(alien2,(1200,1))
 
@@ -166,8 +165,8 @@ def main():
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
-						#screen.blit(text4,textRect4)
-						screen.blit(catastrophes_sprite,(5,5))
+						screen.blit(text4,textRect4)
+						screen.blit(catastrophes_sprite,(110,10))
 						all_sprites_list.draw(screen)
 						screen.blit(alien3,(1200,1))
 
@@ -176,8 +175,8 @@ def main():
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
-						#screen.blit(text4,textRect4)
-						screen.blit(catastrophes_sprite,(5,5))
+						screen.blit(text4,textRect4)
+						screen.blit(catastrophes_sprite,(110,10))
 						all_sprites_list.draw(screen)
 						screen.blit(alien4,(1200,1))
 
@@ -186,10 +185,20 @@ def main():
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
-						#screen.blit(text4,textRect4)
-						screen.blit(catastrophes_sprite,(5,5))
+						screen.blit(text4,textRect4)
+						screen.blit(catastrophes_sprite,(110,10))
 						all_sprites_list.draw(screen)
 						screen.blit(alien5,(1200,1))
+
+					elif s.rect.x != 0 and s.rect.y != 0:
+						screen.blit(background,(0,0))
+						screen.blit(text,textRect)
+						screen.blit(text2,textRect2)
+						screen.blit(text3,textRect3)
+						screen.blit(text4,textRect4)
+						screen.blit(catastrophes_sprite,(110,10))
+						all_sprites_list.draw(screen)
+						pygame.draw.rect(screen,WHITE, (1150,1,350,500),1)
 
 		clock.tick(60)
 
