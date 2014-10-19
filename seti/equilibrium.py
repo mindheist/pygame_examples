@@ -51,6 +51,21 @@ def main():
 	star5 = pygame.image.load("star5.jpg").convert()
 
 	contact1 = pygame.image.load("contact1.jpg").convert()
+	contact2 = pygame.image.load("contact2.jpg").convert()
+	contact3 = pygame.image.load("contact3.jpg").convert()
+	contact4 = pygame.image.load("contact4.jpg").convert()
+	contact5 = pygame.image.load("contact5.jpg").convert()
+
+	treasury_button = pygame.image.load("treasury-button.png").convert()
+	knowledge_button = pygame.image.load("knowledge-button.png").convert()
+	advanced_Knowledge_button = pygame.image.load("AdvancedK-button.png").convert()
+	contacts_button = pygame.image.load("Contacts-button.png").convert()
+	
+
+	treasury_popup = pygame.image.load("treasury-popup.jpg").convert()
+	contacts_popup = pygame.image.load("contacts-popup.jpg").convert()
+	advanced_popup = pygame.image.load("advanced-k-popup.jpg").convert()
+
 
 	knowledge = pygame.image.load("knowledge.jpg").convert()
 	message_sent = pygame.image.load("message-sent.jpg").convert()
@@ -180,6 +195,10 @@ def main():
 	screen.blit(text3,textRect3)
 	screen.blit(text4,textRect4)
 	screen.blit(catastrophes_sprite,(110,10))
+	screen.blit(treasury_button,(10,200))
+	screen.blit(knowledge_button,(10,250))
+	screen.blit(advanced_Knowledge_button,(10,300))
+	screen.blit(contacts_button,(10,350))
 	all_sprites_list.draw(screen)
 
 	done = False
@@ -190,6 +209,8 @@ def main():
 	#	print star.rect.x , star.rect.y
 
 	score = 0
+
+	current_star = None
 
 # === Step 1 : 
 
@@ -207,7 +228,12 @@ def main():
 					print s.rect.x , s.rect.y
 					if s.rect.x ==750 and s.rect.y == 250:
 						print "Green Sprite"
+						current_star = 1
 						screen.blit(background,(0,0))
+						screen.blit(treasury_button,(10,200))
+						screen.blit(knowledge_button,(10,250))
+						screen.blit(advanced_Knowledge_button,(10,300))
+						screen.blit(contacts_button,(10,350))
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
@@ -218,7 +244,12 @@ def main():
 
 
 					elif s.rect.x ==500 and s.rect.y ==200 :
+						current_star = 2
 						screen.blit(background,(0,0))
+						screen.blit(treasury_button,(10,200))
+						screen.blit(knowledge_button,(10,250))
+						screen.blit(advanced_Knowledge_button,(10,300))
+						screen.blit(contacts_button,(10,350))
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
@@ -228,7 +259,12 @@ def main():
 						screen.blit(star2,(1150,1))
 
 					elif s.rect.x ==850 and s.rect.y ==300 :
+						current_star = 3
 						screen.blit(background,(0,0))
+						screen.blit(treasury_button,(10,200))
+						screen.blit(knowledge_button,(10,250))
+						screen.blit(advanced_Knowledge_button,(10,300))
+						screen.blit(contacts_button,(10,350))
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
@@ -238,7 +274,12 @@ def main():
 						screen.blit(star3,(1150,1))
 
 					elif s.rect.x ==750 and s.rect.y ==350 :
+						current_star = 4
 						screen.blit(background,(0,0))
+						screen.blit(treasury_button,(10,200))
+						screen.blit(knowledge_button,(10,250))
+						screen.blit(advanced_Knowledge_button,(10,300))
+						screen.blit(contacts_button,(10,350))
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
@@ -248,7 +289,12 @@ def main():
 						screen.blit(star4,(1150,1))
 
 					elif s.rect.x ==600 and s.rect.y ==500 :
+						current_star = 5 
 						screen.blit(background,(0,0))
+						screen.blit(treasury_button,(10,200))
+						screen.blit(knowledge_button,(10,250))
+						screen.blit(advanced_Knowledge_button,(10,300))
+						screen.blit(contacts_button,(10,350))
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
@@ -258,7 +304,12 @@ def main():
 						screen.blit(star5,(1150,1))
 
 					elif s.rect.x != 0 and s.rect.y != 0:
+						current_star = 100
 						screen.blit(background,(0,0))
+						screen.blit(treasury_button,(10,200))
+						screen.blit(knowledge_button,(10,250))
+						screen.blit(advanced_Knowledge_button,(10,300))
+						screen.blit(contacts_button,(10,350))
 						screen.blit(text,textRect)
 						screen.blit(text2,textRect2)
 						screen.blit(text3,textRect3)
@@ -269,8 +320,12 @@ def main():
 						pygame.draw.rect(screen,GREEN, (1150,101,350,300))
 						pygame.draw.rect(screen,MAROON,(1150,401,350,100))
 
-				if (pos[0] >= 1189 and pos[0] <= 1289) and (pos[1] >=445 and pos[1]<=472):
+				if (pos[0] >= 1189 and pos[0] <= 1289) and (pos[1] >=445 and pos[1]<=472) and (current_star == 1):
 					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
 					screen.blit(text,textRect)    #Pandemic
 					screen.blit(text2,textRect2)  #Famine
 					screen.blit(text3,textRect3)  #Pollution
@@ -278,7 +333,7 @@ def main():
 					screen.blit(catastrophes_sprite,(110,10))
 					all_sprites_list.draw(screen)
 					screen.blit(star1,(1150,1))
-					screen.blit(knowledge,(1150,505))
+					screen.blit(knowledge,(1150,505)) # verifying this line
 					break
 					#pygame.draw.rect(screen,MAROON,(1150,601,350,500))
 					#screen.blit(menu_text_1,menutextRect1) #BigBang
@@ -291,8 +346,12 @@ def main():
 					#screen.blit(alien1,(1150,520))
 
 
-				if (pos[0] >= 1190 and pos[0] <= 1300) and (pos[1] >=952 and pos[1]<=980):
+				if (pos[0] >= 1190 and pos[0] <= 1300) and (pos[1] >=952 and pos[1]<=980) and (current_star == 1):
 					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
 					screen.blit(text,textRect)
 					screen.blit(text2,textRect2)
 					screen.blit(text3,textRect3)
@@ -307,8 +366,12 @@ def main():
 					screen.blit(message_sent,(1150,525))
 
 				
-				if (pos[0] >= 1406  and pos[0]<= 1468 ) and (pos[1]>=540 and pos[1]<= 570 ):
+				if (pos[0] >= 1406  and pos[0]<= 1468 ) and (pos[1]>=540 and pos[1]<= 570 ) and (current_star == 1):
 					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
 					screen.blit(text,textRect)
 					screen.blit(text2,textRect2)
 					screen.blit(text3,textRect3)
@@ -318,8 +381,79 @@ def main():
 					pygame.time.delay(2000)
 					screen.blit(contact1,(1,521)) # first alien contact
 
-				if (pos[0] >= 40  and pos[0]<= 140 ) and (pos[1]>=964 and pos[1]<= 994 ):
+				if (pos[0] >= 40  and pos[0]<= 140 ) and (pos[1]>=964 and pos[1]<= 994 ) and (current_star ==1 ):
 					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen) 
+
+# second star workflow			
+
+				if (pos[0] >= 1189 and pos[0] <= 1289) and (pos[1] >=445 and pos[1]<=472) and (current_star == 2):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)    #Pandemic
+					screen.blit(text2,textRect2)  #Famine
+					screen.blit(text3,textRect3)  #Pollution
+					screen.blit(text4,textRect4)  #War
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					screen.blit(star2,(1150,1))
+					screen.blit(knowledge,(1150,505))
+					break
+					
+
+				if (pos[0] >= 1190 and pos[0] <= 1300) and (pos[1] >=952 and pos[1]<=980) and (current_star == 2):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					#screen.blit(star1,(1150,1))
+					#pygame.draw.rect(screen,MAROON,(1150,601,350,500))
+
+					pygame.time.delay(1000)
+
+					screen.blit(message_sent,(1150,525))
+
+				
+				if (pos[0] >= 1406  and pos[0]<= 1468 ) and (pos[1]>=540 and pos[1]<= 570 ) and (current_star == 2):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					pygame.time.delay(2000)
+					screen.blit(contact2,(1,521)) # first alien contact
+
+				if (pos[0] >= 40  and pos[0]<= 140 ) and (pos[1]>=964 and pos[1]<= 994 ) and (current_star ==2 ):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
 					screen.blit(text,textRect)
 					screen.blit(text2,textRect2)
 					screen.blit(text3,textRect3)
@@ -327,19 +461,296 @@ def main():
 					screen.blit(catastrophes_sprite,(110,10))
 					all_sprites_list.draw(screen)
 
+# Third Star
+
+				if (pos[0] >= 1189 and pos[0] <= 1289) and (pos[1] >=445 and pos[1]<=472) and (current_star == 3):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)    #Pandemic
+					screen.blit(text2,textRect2)  #Famine
+					screen.blit(text3,textRect3)  #Pollution
+					screen.blit(text4,textRect4)  #War
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					screen.blit(star3,(1150,1))
+					screen.blit(knowledge,(1150,505))
+					break
 					
 
+				if (pos[0] >= 1190 and pos[0] <= 1300) and (pos[1] >=952 and pos[1]<=980) and (current_star == 3):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					#screen.blit(star3,(1150,1))
+					#pygame.draw.rect(screen,MAROON,(1150,601,350,500))
+
+					pygame.time.delay(500)
+
+					screen.blit(message_sent,(1150,525))
+
+				
+				if (pos[0] >= 1406  and pos[0]<= 1468 ) and (pos[1]>=540 and pos[1]<= 570 ) and (current_star == 3):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					pygame.time.delay(2000)
+					screen.blit(contact3,(1,521)) # first alien contact
+
+				if (pos[0] >= 40  and pos[0]<= 140 ) and (pos[1]>=964 and pos[1]<= 994 ) and (current_star == 3 ):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+
+# 4th star
+				
+				if (pos[0] >= 1189 and pos[0] <= 1289) and (pos[1] >=445 and pos[1]<=472) and (current_star == 4):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)    #Pandemic
+					screen.blit(text2,textRect2)  #Famine
+					screen.blit(text3,textRect3)  #Pollution
+					screen.blit(text4,textRect4)  #War
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					screen.blit(star4,(1150,1))
+					screen.blit(knowledge,(1150,505))
+					break
+				
 
 
+				if (pos[0] >= 1190 and pos[0] <= 1300) and (pos[1] >=952 and pos[1]<=980) and (current_star == 4):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					#screen.blit(star1,(1150,1))
+					#pygame.draw.rect(screen,MAROON,(1150,601,350,500))
+
+					pygame.time.delay(1000)
+
+					screen.blit(message_sent,(1150,525))
+
+				
+				if (pos[0] >= 1406  and pos[0]<= 1468 ) and (pos[1]>=540 and pos[1]<= 570 ) and (current_star == 4):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					pygame.time.delay(2000)
+					screen.blit(contact4,(1,521)) # alien contact
+
+				if (pos[0] >= 40  and pos[0]<= 140 ) and (pos[1]>=964 and pos[1]<= 994 ) and (current_star == 4 ):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+
+# 5th star
+
+				if (pos[0] >= 1189 and pos[0] <= 1289) and (pos[1] >=445 and pos[1]<=472) and (current_star == 5):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)    #Pandemic
+					screen.blit(text2,textRect2)  #Famine
+					screen.blit(text3,textRect3)  #Pollution
+					screen.blit(text4,textRect4)  #War
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					screen.blit(star5,(1150,1))
+					screen.blit(knowledge,(1150,505))
+					break
+
+				if (pos[0] >= 1190 and pos[0] <= 1300) and (pos[1] >=952 and pos[1]<=980) and (current_star == 5):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					#screen.blit(star1,(1150,1))
+					#pygame.draw.rect(screen,MAROON,(1150,601,350,500))
+
+					pygame.time.delay(1000)
+
+					screen.blit(message_sent,(1150,525))
+
+				
+				if (pos[0] >= 1406  and pos[0]<= 1468 ) and (pos[1]>=540 and pos[1]<= 570 ) and (current_star == 5):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					pygame.time.delay(2000)
+					screen.blit(contact5,(1,521)) # first alien contact
+
+				if (pos[0] >= 40  and pos[0]<= 140 ) and (pos[1]>=964 and pos[1]<= 994 ) and (current_star == 5 ):
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))		
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+
+# Treasury Pop-up blitting below
+
+				if (pos[0] >= 10 and pos[0] <= 52 ) and (pos[1] >=200 and pos[1]<=242) :
+
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))		
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					screen.blit(treasury_popup,(100,150))
 
 
+# Knowledge pop-up Blitting below
+
+
+				if (pos[0] >= 10 and pos[0] <= 52 ) and (pos[1] >=252 and pos[1]<=292) :
+
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))		
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					screen.blit(knowledge,(100,150))
+
+# Advanced Knowledge popup Blitting below
+
+
+				if (pos[0] >= 10 and pos[0] <= 52 ) and (pos[1] >=302 and pos[1]<=341) :
+
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))		
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					screen.blit(advanced_popup,(100,150))
+
+# Contacts popup blitted here
+
+
+				if (pos[0] >= 10 and pos[0] <= 52 ) and (pos[1] >=351 and pos[1]<=391) :
+
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))		
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
+					screen.blit(contacts_popup,(100,150))
+
+# Close pop-ups
+
+				if (pos[0] >= 138 and pos[0] <= 248 ) and (pos[1] >= 596 and pos[1]<= 625) :
+
+					screen.blit(background,(0,0))
+					screen.blit(treasury_button,(10,200))
+					screen.blit(knowledge_button,(10,250))
+					screen.blit(advanced_Knowledge_button,(10,300))
+					screen.blit(contacts_button,(10,350))		
+					screen.blit(text,textRect)
+					screen.blit(text2,textRect2)
+					screen.blit(text3,textRect3)
+					screen.blit(text4,textRect4)
+					screen.blit(catastrophes_sprite,(110,10))
+					all_sprites_list.draw(screen)
 					
-
-
-
-
-
-
 
 		clock.tick(60)
 
