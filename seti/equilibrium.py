@@ -3,8 +3,9 @@
 import pygame
 import random
 import time
-import pygbutton
 import sys
+import pygame.mixer
+
 
 # DEFINE COLORS
 
@@ -15,6 +16,9 @@ GREEN  = (  0,255,  0)
 BLUE   = (  0,  0,255)
 MAROON = (128,  0,  0)
 
+pygame.mixer.pre_init(44100, -16, 2, 1024)
+#pygame.mixer.init(44050, -16, 2, 2048)
+
 # SCREEN SIZE
 
 screen_width = 1500
@@ -24,7 +28,7 @@ screen_height = 1000
 
 clock = pygame.time.Clock()
 
-menu_font = pygame.font.Font(None, 40)
+#menu_font = pygame.font.Font(None, 40)
 
 class Star(pygame.sprite.Sprite):
 	def __init__(self,color,width,height):
@@ -37,6 +41,7 @@ class Star(pygame.sprite.Sprite):
 def main():
 	
 	pygame.init()
+	bgm = pygame.mixer.Sound('motion.mp3')
 
 	screen = pygame.display.set_mode([screen_width,screen_height])
 
@@ -215,6 +220,7 @@ def main():
 # === Step 1 : 
 
 	while not done :
+		bgm.play()
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				done = True
