@@ -274,7 +274,7 @@ class Level_01(Level):
 	def  __init__(self,player):
 		Level.__init__(self,player)
 
-		self.background = pygame.image.load("mars4.jpg").convert()
+		self.background = pygame.image.load("background_01.png").convert()
 		self.background.set_colorkey(WHITE)
 
 		self.level_limit = -2500
