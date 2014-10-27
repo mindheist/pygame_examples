@@ -1,0 +1,71 @@
+Richards's MarkDown : https://github.com/rdclark/h5dc-putting-js-to-work/blob/master/PuttingJSToWork.markdown
+
+# Notes from the second JavaScript Class
+=========================================
+
+1. a || b ;  These are short circuit operators and not bitwise ANDs and ORs. 
+2. In Javascript , a single & and | are  equivalent of bitwise AND and Bitwise OR
+3. http://yuji.wordpress.com/2008/05/14/python-basics-of-python-dictionary-and-looping-through-them/ ; read this
+4.   Quick function :
+       var oz = {
+       name : "The great and mighty Oz",
+       location : "emerald city",
+       behindCurtain : true,
+       introduce : function() {
+       console.log("The name is " + this.name)
+       }
+       }
+    alert(oz.introduce());
+
+  5. Prototypical inheritance in Javascript :
+
+  6. getElementsByClassName , getElementsbyTagName 
+  7. Mobile Library called Zepto ; uses QuerySelector as the CSS engine
+  8. document.QuerySelector 
+  9. can I use.com.
+  10. Request Animation frame
+  11.     <button id="b" onclick = "alert('Done!')">Done!</button> : Creating a button in HTML!
+           
+            Button example:
+
+            HTML part:
+
+            <button id="a">A</button>
+			<button id="b">B</button>
+		 	<button id="c">C</button>
+ 			<button id="d">D</button>
+
+ 			script part : Make sure the brackets are closed appropriately
+
+ 			var buttons = document.querySelectorAll('button'); 
+   			 for (var i=0; i < buttons.length; i++){
+   			     buttons[i].onclick = function(event) {
+  	          alert("Clicked " + event.target.id)
+	         };
+	    }    
+               
+
+  12. Event has properties --- event.type , event.timestamp and event.target
+
+  13. First-Class functions ; closures ; Dynamic this ; Many ways to create classes ;
+      Read : http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/
+
+
+ 14. Functions are variables :
+ 15. Array.Reduce , there is Array.Map and there is Array.Filter -- these are array iteration methods.
+ 16. IIFE - Immediately Invoked function Expression - Creating namespaces , creating loadable modules etc.
+ 17. Closures in Javascript   : http://stackoverflow.com/questions/111102/how-do-javascript-closures-work
+     Learn closures in python : http://stackoverflow.com/questions/4020419/closures-in-python
+
+ 18. JSON - do the Exercise from the class to get a tactile understanding
+ 19. Promises in Javascript (using Q --) : http://www.html5rocks.com/en/tutorials/es6/promises/  : Resolve and Reject in Promises
+ 20. Understand Websockets : Explore WebWorkers
+ 21. Method Chaining
+ 22. D3 : tutorial for meteor : http://mhyfritz.com/blog/2014/08/16/reactive-d3-meteor/
+     Scaled Data and accessors 
+     Check out Meteor : https://www.meteor.com/examples/leaderboard
+
+Instrctor Contact
+
+ 23. rdclark@nextquestion.net
+     richard.clark@kaazing.com

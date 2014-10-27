@@ -374,7 +374,7 @@ def main():
 #-------- Main Program Loop ---------#
 
 	while not done:
-		#bgm.play()
+		bgm.play()
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				done = True

@@ -7,8 +7,8 @@
 4. Pass by Reference in Python : Check out the programming arcade games video
 5. Why doesn't Javascript and python have a return type .
 6. Introduced JSfiddle.
-7. ternary shorthand 
-8. Switch : is slower than if else ( can't understand how this works )
+7. Ternary shorthand 
+8. Switch : is slower than if else ( can't understand how this works ) - a bit counter intuitive.
 9. Array Iteration : note that the index starts at 0; I have know this all my life 
 10. javascript hasownproperty
 11. while /doWhile : nothing new here .
@@ -19,11 +19,12 @@
 	If you use velocity , all your jQuery animations/transitions will use CSS transitions ??! What does that mean ?
 	Look up What are ids in CSS ( In front end programming as such)
 	learn to traverse the DOM tree using javascript on the console ! 
-15 . Form Validation 
+15 .Form Validation 
 16. Asynchronous JavaScript : In spirit Javascript is Non-blocking ; in PHP - the spirit is blocking !
     Timers are an important tool using which asynchronous java ; its all in a single thread .
     same origin policy ; google and learn this . To prevent XSS - cross site scripting. 
     iframe ; all banks are using single page apps these days ! since people are trying to access it from mobile too.
+    JavaScript - The good parts
 
 
 Go home and write Doodle Jump in pygame 
