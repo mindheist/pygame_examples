@@ -7,7 +7,7 @@
 #== http://www.gilt.com/look/?s_id=dfbd312e324f9b33b4bf6f027246d5f6f00593524b58da205ebd56e79f1f2b67_0_1033759382&utm_source=gilt&utm_medium=email
 #== &utm_campaign=visitrec_09302014&lk=1004479233amlf7dym7ltrdg326aq9d44awf9lvz
 #== Tommy Ref blog : http://supermeatboy.com/134/How_do_I_get_started_programming_games___/
-#== There is a difference in the way we need to think 
+#== There is a difference in the way we need to think
 #== 1. Import the pygame library
 import pygame
 import pygame.mixer
@@ -88,7 +88,7 @@ class Player (pygame.sprite.Sprite):
 		image = sprite_sheet.get_image(132,0,67,90)
 		image = pygame.transform.flip(image,True,False)
 		self.walking_frames_left.append(image)
-		
+
 
 		image = sprite_sheet.get_image(0,93,66,90)
 		image = pygame.transform.flip(image,True,False)
@@ -107,14 +107,14 @@ class Player (pygame.sprite.Sprite):
 		self.walking_frames_left.append(image)
 
 		self.image = self.walking_frames_right[0]
- 
+
         # Set a referance to the image rect.
 		self.rect = self.image.get_rect()
 
 
 #== Draw the Player now into the surface and assign it to image
 		#width = 40
-		#height = 40 
+		#height = 40
 		#""" In the program , we already specify the width and height of the Player"""
 		#self.image = pygame.Surface([width,height])
 		#self.image.fill(RED)
@@ -127,7 +127,7 @@ class Player (pygame.sprite.Sprite):
 
 		#Move up and Down
 		self.rect.x = self.rect.x + self.change_x
-		pos = self.rect.x 
+		pos = self.rect.x
 		if self.direction == "R":
 			frame = (pos//30) % len(self.walking_frames_right)
 			self.image = self.walking_frames_right[frame]
@@ -147,7 +147,7 @@ class Player (pygame.sprite.Sprite):
 # Move along the y-axis
 
 		self.rect.y = self.rect.y + self.change_y
-		
+
 		block_hit_list = pygame.sprite.spritecollide(self,self.level.platform_list,False)
 		for  block in block_hit_list:
 			if self.change_y > 0:
@@ -157,7 +157,7 @@ class Player (pygame.sprite.Sprite):
 
 	def calc_gravity(self):
 
-			#if self.change_y ==0:   # This is a fix for moving platforms 
+			#if self.change_y ==0:   # This is a fix for moving platforms
 			#	self.change_y = 1
 			#else:
 			self.change_y += .35
@@ -170,7 +170,7 @@ class Player (pygame.sprite.Sprite):
 
 	def jump(self):
 		""" Actions when the user hits the Jump button,let me come back to this
-		after writing the platform class; should jump be a single button or 
+		after writing the platform class; should jump be a single button or
 		should it be a combination of right arrow and up arrow ? """
 		self.rect.y += 2
 		platform_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
@@ -214,7 +214,7 @@ class invisible_wall(pygame.sprite.Sprite):
 		self.image = pygame.Surface([width,height])
 		self.image.fill(WHITE)
 		self.rect = self.image.get_rect()
-		
+
 
 class fire_Platform(pygame.sprite.Sprite):
 
@@ -233,7 +233,7 @@ class Level(object):
 	#== All the Walls we drew in maze_runner were added to a common list
 	#== In this , we would add all the platforms we drew to a platform list.
 	platform_list = None
-	enemy_list    = None 
+	enemy_list    = None
 	""" There are no enemies in the game yet"""
 
 	background = None
@@ -345,22 +345,23 @@ class Level_02(Level):
 def main():
     #== Initialize pygame , set_mode for the display and set caption
 	pygame.init()
-	bgm = pygame.mixer.Sound('mario.ogg')
+	# -- Commenting out the audio parts of the code --
+	#bgm = pygame.mixer.Sound('mario.ogg')
 	#bgm.play()
 	screen = pygame.display.set_mode([SCREEN_WIDTH,SCREEN_HEIGHT])
 	pygame.display.set_caption("Platform Jumper")
     #== Create a player Object
 	player = Player()
-    
-    #== Create a level list ; this will hold the levels ; right now we have only one Level   
+
+    #== Create a level list ; this will hold the levels ; right now we have only one Level
 	level_list = []
 	level_list.append(Level_01(player))
 	level_list.append(Level_02(player))
 
 	current_level_no = 0
 	current_level = level_list[current_level_no]
-     
-    #=== Creating an Active_Sprite_List that will contain the player to start off with 
+
+    #=== Creating an Active_Sprite_List that will contain the player to start off with
 	active_sprite_list = pygame.sprite.Group()
 	player.level = current_level
 
@@ -374,7 +375,9 @@ def main():
 #-------- Main Program Loop ---------#
 
 	while not done:
-		bgm.play()
+
+		# -- Commenting out the audio parts of the code --
+		#bgm.play()
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				done = True
@@ -401,7 +404,7 @@ def main():
 			diff = player.rect.right - 500
 			player.rect.right = 500
 			current_level.shift_world(-diff)
-  
+
         # If the player gets near the left side, shift the world right (+x)
 		if player.rect.left <= 120:
 			diff = 120 - player.rect.left
@@ -437,19 +440,3 @@ def main():
 
 if __name__ == "__main__":
 	main()
-
-
-					
-				
-				
-		
-
-		
-			
-
-		
-
-
-			
-
-
