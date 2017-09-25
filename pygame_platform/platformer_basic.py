@@ -3,9 +3,6 @@
 #== http://higherorderfun.com/blog/
 #== http://openbookproject.net/thinkcs/python/english3e/index.html
 #== http://programarcadegames.com/python_examples/show_file.php?file=platform_jumper.py
-
-#== http://www.gilt.com/look/?s_id=dfbd312e324f9b33b4bf6f027246d5f6f00593524b58da205ebd56e79f1f2b67_0_1033759382&utm_source=gilt&utm_medium=email
-#== &utm_campaign=visitrec_09302014&lk=1004479233amlf7dym7ltrdg326aq9d44awf9lvz
 #== Tommy Ref blog : http://supermeatboy.com/134/How_do_I_get_started_programming_games___/
 #== There is a difference in the way we need to think
 #== 1. Import the pygame library
@@ -108,7 +105,7 @@ class Player (pygame.sprite.Sprite):
 
 		self.image = self.walking_frames_right[0]
 
-        # Set a referance to the image rect.
+        # Set a reference to the image rect.
 		self.rect = self.image.get_rect()
 
 
